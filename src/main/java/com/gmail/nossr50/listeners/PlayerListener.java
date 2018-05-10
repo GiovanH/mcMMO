@@ -476,7 +476,7 @@ public class PlayerListener implements Listener {
             case LEFT_CLICK_BLOCK:
                 type = block.getType();
 
-                if (!Config.getInstance().getAbilitiesOnlyActivateWhenSneaking() || player.isSneaking()) {
+                if (mcMMOPlayer.getAbilityUse() && (!Config.getInstance().getAbilitiesOnlyActivateWhenSneaking() || player.isSneaking())) {
                     /* REPAIR CHECKS */
                     if (type == Repair.anvilMaterial && SkillType.REPAIR.getPermissions(player) && mcMMO.getRepairableManager().isRepairable(heldItem)) {
                         RepairManager repairManager = mcMMOPlayer.getRepairManager();
