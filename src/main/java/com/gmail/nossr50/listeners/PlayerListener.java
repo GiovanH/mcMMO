@@ -423,11 +423,12 @@ public class PlayerListener implements Listener {
     public void onPlayerInteractLowest(PlayerInteractEvent event) {
         Player player = event.getPlayer();
 
-        if (event.getHand() != EquipmentSlot.HAND || !UserManager.hasPlayerDataKey(player) || player.getGameMode() == GameMode.CREATIVE) {
+        McMMOPlayer mcMMOPlayer = UserManager.getPlayer(player);
+        
+        if (!mcMMOPlayer.getAbilityUse() || event.getHand() != EquipmentSlot.HAND || !UserManager.hasPlayerDataKey(player) || player.getGameMode() == GameMode.CREATIVE) {
             return;
         }
 
-        McMMOPlayer mcMMOPlayer = UserManager.getPlayer(player);
         MiningManager miningManager = mcMMOPlayer.getMiningManager();
         Block block = event.getClickedBlock();
         ItemStack heldItem = player.getInventory().getItemInMainHand();
@@ -476,7 +477,7 @@ public class PlayerListener implements Listener {
             case LEFT_CLICK_BLOCK:
                 type = block.getType();
 
-                if (mcMMOPlayer.getAbilityUse() && (!Config.getInstance().getAbilitiesOnlyActivateWhenSneaking() || player.isSneaking())) {
+                if (!Config.getInstance().getAbilitiesOnlyActivateWhenSneaking() || player.isSneaking()) {
                     /* REPAIR CHECKS */
                     if (type == Repair.anvilMaterial && SkillType.REPAIR.getPermissions(player) && mcMMO.getRepairableManager().isRepairable(heldItem)) {
                         RepairManager repairManager = mcMMOPlayer.getRepairManager();
