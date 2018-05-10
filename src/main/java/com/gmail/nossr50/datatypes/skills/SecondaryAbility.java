@@ -82,5 +82,9 @@ public enum SecondaryAbility {
 
     /* Woodcutting */
     LEAF_BLOWER,
-    WOODCUTTING_DOUBLE_DROPS;
+    WOODCUTTING_DOUBLE_DROPS, 
+    
+    /* Enchanting */
+    ENCHANTING_REFUND,
+    ENCHANTING_DISCOUNT;
 }

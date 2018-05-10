@@ -29,6 +29,7 @@ import com.gmail.nossr50.config.treasure.TreasureConfig;
 import com.gmail.nossr50.database.DatabaseManager;
 import com.gmail.nossr50.database.DatabaseManagerFactory;
 import com.gmail.nossr50.listeners.BlockListener;
+import com.gmail.nossr50.listeners.EnchantmentListener;
 import com.gmail.nossr50.listeners.EntityListener;
 import com.gmail.nossr50.listeners.InventoryListener;
 import com.gmail.nossr50.listeners.PlayerListener;
@@ -430,6 +431,7 @@ public class mcMMO extends JavaPlugin {
         pluginManager.registerEvents(new InventoryListener(this), this);
         pluginManager.registerEvents(new SelfListener(), this);
         pluginManager.registerEvents(new WorldListener(this), this);
+        pluginManager.registerEvents(new EnchantmentListener(this), this);
     }
 
     private void registerCustomRecipes() {
